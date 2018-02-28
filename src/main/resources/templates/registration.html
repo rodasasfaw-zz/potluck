@@ -1,85 +1,38 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org " xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <div th:replace="fragments/header :: header"/>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Samazon</title>
 </head>
-
 <body>
-
-<div th:replace="fragments/header :: navbar"/>
-
-
 <div class="container">
 
-    <!--Show this info message only if registered successfully-->
-    <div class="alert alert-info" th:if="${successMessage}" th:utext="${successMessage}"></div>
+    <th:block th:replace="Base :: navlinks"></th:block>
 
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <form autocomplete="off" action="#" th:action="@{/registration}"
-                  th:object="${user}" method="post" class="form-horizontal"
-                  role="form">
+    <h4>Register as a new user</h4>
+    <form action="#" th:action="@{/newuser}" th:object="${appUser}" method="post">
 
-                <h2>Registration Form</h2>
+        <input type="hidden" th:field="*{id}" />
+        <input type="text" placeholder="Username" th:field="*{username}" />
+        <!--<span th:if="${#fields.hasErrors('username')}"-->
+            <!--th:errors="*{username}"></span><br />-->
 
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
-                               class="alert alert-danger"></label>
-                        <input type="text" th:field="*{name}" placeholder="Name"
-                               class="form-control"/>
-                    </div>
-                </div>
+        <input type="text"  placeholder="Password" th:field="*{password}" />
+        <!--<span th:if="${#fields.hasErrors('password')}"-->
+            <!--th:errors="*{password}"></span><br />-->
 
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
-                               class="alert alert-danger"></label>
-                        <input type="text" th:field="*{lastName}"
-                               placeholder="Last Name" class="form-control"/>
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-                               class="alert alert-danger"></label>
-                        <input type="text" th:field="*{email}" placeholder="Email"
-                               class="form-control"/>
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
-                               class="alert alert-danger"></label>
-                        <input type="password" th:field="*{password}"
-                               placeholder="Password" class="form-control"/>
-                    </div>
-                </div>
+        <button class="btn btn-primary btn-large" type="submit" >Submit</button>
 
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
-                               class="alert alert-danger"></label>
-                        <input type="text" th:field="*{username}"
-                               placeholder="Username" class="form-control"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Register User</button>
-                    </div>
-                </div>
-
-            </form>
-        </div>
-    </div>
+    </form>
 </div>
 
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
 </html>

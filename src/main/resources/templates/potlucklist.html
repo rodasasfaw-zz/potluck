@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+
+<table>
+    <th> Item Name</th>
+    <th> Serving Size</th>
+    <th> Item Name</th>
+
+<tr th:each="pledgeitems: ${pledgeditems}">
+    <td th:text="${pledgeitems.name}"></td>
+    <td th:text="${pledgeitems.servingSize}"></td>
+    <td th:text="${pledgeitems.itemType}"></td>
+    </tr>
+</table>
+<a th:href="@{/additemtoappuser/{id} (id=${pledgeditems.id})}">add to pledge list</a>
+</body>
+</html>

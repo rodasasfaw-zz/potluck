@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<div class="container">
+
+    <h3>Product Information</h3>
+
+    <form class="navbar-form pull-left" action="#" th:action="@{/additemlist}" th:object="${pledgeditems}" method="post">
+
+                <input type="hidden" th:field="*{id}" />
+
+        Item Name: <input type="text" placeholder="Name" th:field="*{name}" />
+                    <span th:if="${#fields.hasErrors('name')}"
+                     th:errors="*{name}"></span><br />
+
+       Item Type: <select th:field="*{itemType}" name = "itemType">
+                  <option value="food">food</option>
+                  <option value="drink">drink</option>
+                   <option value="dessert">dessert</option>
+                  </select>
+
+        Serving Size: <input type="number" placeholder="serving size" th:field="*{servingSize}" />
+                       <span th:if="${#fields.hasErrors('servingSize')}"
+                              th:errors="*{servingSize}"></span><br />
+
+
+        <button class="btn btn-primary btn-large" type="submit" >Submit</button>
+
+    </form>
+</div>
+
+</body>
+</html>
